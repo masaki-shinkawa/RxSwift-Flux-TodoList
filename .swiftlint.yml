@@ -1,0 +1,14 @@
+# デフォルト有効で無効にするルール
+disabled_rules:
+  - force_try
+  - force_cast
+identifier_name:
+  excluded:
+    - id
+    - E
+line_length:
+  warning: 300
+  error: 500
+excluded:
+  - Pods
+
