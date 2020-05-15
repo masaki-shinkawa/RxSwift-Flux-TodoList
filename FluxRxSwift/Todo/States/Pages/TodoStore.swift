@@ -40,7 +40,9 @@ private extension TodoStore {
             prevItemList.append(action.todoItem)
             let item = ItemListState(itemList: prevItemList)
             state.itemList.accept((item, nil))
-            print(state.itemList.value.0?.itemList)
+        case let action as TodoActions.ShowTodo:
+            let item = ItemListState(itemList: action.todoItemList)
+            state.itemList.accept((item, nil))
         default:
             break
         }

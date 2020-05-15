@@ -15,3 +15,7 @@ public struct TodoAddItemParameter {
         self.title = title
     }
 }
+
+public struct TodoShowItemParameter {
+
+}

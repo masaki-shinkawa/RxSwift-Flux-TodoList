@@ -42,15 +42,36 @@
                                         <rect key="frame" x="0.0" y="80" width="398" height="722"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aRe-Zi-o1x" userLabel="TodoTableCell">
-                                                <rect key="frame" x="0.0" y="28" width="398" height="43.5"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoTableViewCell" id="aRe-Zi-o1x" userLabel="TodoTableCell" customClass="TodoTableViewCell" customModule="FluxRxSwift" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="398" height="43"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aRe-Zi-o1x" id="Stw-hD-q7o">
-                                                    <rect key="frame" x="0.0" y="0.0" width="398" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="398" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqh-n6-cna">
+                                                            <rect key="frame" x="28" y="11" width="342" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="Mqh-n6-cna" secondAttribute="trailing" constant="8" id="7VM-Xp-KFq"/>
+                                                        <constraint firstItem="Mqh-n6-cna" firstAttribute="top" secondItem="Stw-hD-q7o" secondAttribute="topMargin" id="TX9-pl-XXX"/>
+                                                        <constraint firstItem="Mqh-n6-cna" firstAttribute="leading" secondItem="Stw-hD-q7o" secondAttribute="leadingMargin" constant="8" id="lvf-D5-Pxp"/>
+                                                        <constraint firstAttribute="bottomMargin" secondItem="Mqh-n6-cna" secondAttribute="bottom" id="uVp-Iy-7TF"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="todoLabel" destination="Mqh-n6-cna" id="NHG-0M-GhK"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="ewb-11-BfJ"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="T5x-nI-J1a"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <constraints>
@@ -73,6 +94,7 @@
                     </view>
                     <connections>
                         <outlet property="addButton" destination="nF0-mg-opa" id="EQI-bx-OeS"/>
+                        <outlet property="todoTableView" destination="nMg-d2-LKM" id="3VN-hV-H9b"/>
                         <outlet property="todoTextField" destination="ccj-PK-bzm" id="Cef-iP-hgW"/>
                     </connections>
                 </viewController>

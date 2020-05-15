@@ -17,4 +17,10 @@ class TodoDataStore {
         let decode = TodoItemDecoder()
         return RealmClient.insert(request: request, decode: decode)
     }
+
+    func show(parameter: TodoShowItemParameter) -> Single<[TodoItem]?> {
+        let request = TodoRequest.show(parameter: parameter)
+        let decode = TodoItemListDecoder()
+        return RealmClient.select(request: request, decode: decode)
+    }
 }

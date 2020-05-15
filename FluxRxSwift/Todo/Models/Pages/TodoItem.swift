@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-public class TodoItem: Object {
+public class TodoItem: RealmBaseObject {
     @objc dynamic var id: String?
     @objc dynamic var title: String?
     @objc dynamic var createdAt: Date?
@@ -38,6 +38,14 @@ public class TodoItem: Object {
         self.updatedAt = updatedAt
     }
 
-    required init() {
+    required init() { }
+    func select() -> [TodoItem]? {
+        guard let realm = self.createRealm() else {
+            return nil
+        }
+        return Array(realm.objects(TodoItem.self))
+    }
+    public override class func primaryKey() -> String? {
+        return "id"
     }
 }

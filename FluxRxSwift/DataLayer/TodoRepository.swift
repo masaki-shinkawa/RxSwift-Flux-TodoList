@@ -12,6 +12,7 @@ import RealmSwift
 
 public protocol TodoRepositoryProtocol {
     func add(parameter: TodoAddItemParameter) -> Single<TodoItem>
+    func show(parameter: TodoShowItemParameter) -> Single<[TodoItem]>
 }
 
 class TodoRepository: TodoRepositoryProtocol {
@@ -28,6 +29,16 @@ class TodoRepository: TodoRepositoryProtocol {
                     throw AppError(message: "add error.")
                 }
                 return data
+        }
+    }
+
+    func show(parameter: TodoShowItemParameter) -> Single<[TodoItem]> {
+        dataStore.show(parameter: parameter)
+            .map { data in
+                guard let data = data else {
+                    return []
+                }
+                return Array(data)
         }
     }
 }

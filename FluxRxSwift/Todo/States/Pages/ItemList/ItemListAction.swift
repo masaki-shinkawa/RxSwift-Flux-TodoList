@@ -11,6 +11,7 @@ import RxSwift
 
 protocol TodoActionProtocol {
     func add(title: String)
+    func show()
 }
 
 class ItemListActionCreator: TodoActionProtocol {
@@ -38,10 +39,29 @@ class ItemListActionCreator: TodoActionProtocol {
         }
         ).disposed(by: disposeBag)
     }
+
+    func show() {
+        repository.show(parameter: TodoShowItemParameter())
+            .map { (todoItemList: [TodoItem]) -> TodoActions.ShowTodo in
+                return TodoActions.ShowTodo(todoItemList: todoItemList)
+        }
+        .subscribeOn(Dependencies.shared.backgroundScheduler)
+        .subscribe(
+            onSuccess: { [weak self] action in
+                self?.dispatcher.action.dispatch(action)
+            },
+            onError: { [] error in
+                print(error)
+        }
+        ).disposed(by: disposeBag)
+    }
 }
 
 enum TodoActions {
     struct AddTodo: Action {
         var todoItem: TodoItem
+    }
+    struct ShowTodo: Action {
+        var todoItemList: [TodoItem]
     }
 }

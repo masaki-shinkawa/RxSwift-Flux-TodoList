@@ -17,3 +17,12 @@ struct TodoItemDecoder: Decodable {
         return TodoItem(id: data.id, title: data.title, createdAt: data.createdAt, updatedAt: data.updatedAt)
     }
 }
+
+struct TodoItemListDecoder: Decodable {
+    typealias DecodeType = [TodoItem]?
+
+    func decode(data: Any?) -> [TodoItem]? {
+        guard let data = data as? [TodoItem] else { return nil }
+        return data
+    }
+}

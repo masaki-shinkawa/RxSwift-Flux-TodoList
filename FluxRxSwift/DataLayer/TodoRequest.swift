@@ -13,4 +13,8 @@ class TodoRequest: Object {
     static func add(parameter: TodoAddItemParameter) -> TodoItem {
         return TodoItem(title: parameter.title)
     }
+
+    static func show(parameter: TodoShowItemParameter) -> TodoItem {
+        return TodoItem()
+    }
 }
